@@ -10,7 +10,8 @@
   Colours are tokens on :root, redefined for dark mode. Components only use
   the token names (bg-paper, text-ink, border-line…), so they switch with the
   theme without any dark: classes. The page follows the system setting unless
-  <html data-theme="light|dark"> says otherwise.
+  <html data-theme="light|dark"> says otherwise. data-theme on any other
+  element switches just that part of the page.
 */
 
 /* ---------- Fonts, from the brand kit ---------- */
@@ -101,7 +102,10 @@
   }
 }
 
-:root[data-theme="dark"] {
+/* data-theme also works on any element, to show part of a page in the other
+   theme. */
+:root[data-theme="dark"],
+[data-theme="dark"] {
   color-scheme: dark;
   --paper: #0b0b12;
   --surface: #14141d;
@@ -122,6 +126,29 @@
   --danger: #ff7b72;
   --danger-soft: #3a1513;
   --focus: #8580ff;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --paper: #fffffa;
+  --surface: #ffffff;
+  --sunken: #f5f5ef;
+  --ink: #0a0a0a;
+  --ink-muted: #5c5c66;
+  --ink-faint: #8a8a94;
+  --line: #e4e4dc;
+  --line-strong: #c9c9c0;
+  --brand: #211aff;
+  --brand-hover: #1a14cc;
+  --brand-soft: #eeedff;
+  --on-brand: #fffffa;
+  --success: #0b7a4b;
+  --success-soft: #e3f5ec;
+  --warning: #9a5b00;
+  --warning-soft: #fdf1dc;
+  --danger: #c4261d;
+  --danger-soft: #fde8e6;
+  --focus: #211aff;
 }
 
 /* ---------- Tailwind theme ---------- */

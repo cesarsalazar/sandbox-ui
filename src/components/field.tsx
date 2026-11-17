@@ -122,3 +122,22 @@ export function ChoiceCards({
     </fieldset>
   );
 }
+
+// An on/off switch, for a setting that takes effect as a choice in a list
+// (sharing a field, allowing email). Pass a label for screen readers when the
+// visible label sits elsewhere.
+export function Switch({ className, ...props }: Omit<InputHTMLAttributes<HTMLInputElement>, "type">) {
+  return (
+    <input
+      type="checkbox"
+      role="switch"
+      className={cx(
+        "relative h-6 w-10 shrink-0 cursor-pointer appearance-none rounded-full bg-line-strong transition-colors checked:bg-brand",
+        "after:absolute after:top-[3px] after:left-[3px] after:size-[18px] after:rounded-full after:bg-white after:shadow-sm after:transition-transform after:content-['']",
+        "checked:after:translate-x-4 disabled:cursor-not-allowed disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
