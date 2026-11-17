@@ -14,9 +14,9 @@ export function TopBar({ appName, home = "/", nav, end, className }: { appName?:
   return (
     <header className={cx("border-b border-line bg-paper/90 backdrop-blur", className)}>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
-        <a href={home} className="flex shrink-0 items-center gap-3 text-brand">
+        <a href={home} className="flex shrink-0 items-center gap-3 text-brand-ink">
           <Logo className="h-[18px] w-auto" />
-          {appName && <span className="border-l border-line-strong pl-3 font-serif text-xl text-ink">{appName}</span>}
+          {appName && <span className="border-l border-line-strong pl-3 text-[15px] font-medium text-ink">{appName}</span>}
         </a>
         {nav && <nav className="ml-2 hidden items-center gap-1 md:flex">{nav}</nav>}
         <div className="ml-auto flex items-center gap-3">{end}</div>
@@ -30,7 +30,7 @@ export function NavLink({ href, active, children }: { href: string; active?: boo
     <a
       href={href}
       aria-current={active ? "page" : undefined}
-      className={cx("rounded-full px-3 py-1.5 text-sm transition-colors", active ? "bg-brand-soft font-medium text-brand" : "text-ink-muted hover:text-ink")}
+      className={cx("rounded-full px-3 py-1.5 text-sm transition-colors", active ? "bg-brand-soft font-medium text-brand-ink" : "text-ink-muted hover:text-ink")}
     >
       {children}
     </a>

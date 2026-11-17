@@ -9,7 +9,7 @@ the first app built with it. Members, finance and sandbox.is move to it later.
 From the brand kit (sandbox.is/brand):
 
 - **Blue** `#211AFF`, on paper `#FFFFFA`
-- **Instrument Serif** for titles
+- **Instrument Serif** for landmark headlines
 - **DM Sans** for text
 - **JetBrains Mono** for numbers and code
 - The logo and the flower, which take the text colour
@@ -48,10 +48,22 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 
 ## Rules
 
-- Colours only through the tokens (`bg-paper`, `text-ink`, `text-ink-muted`,
+- **Colours only through the tokens** (`bg-paper`, `text-ink`, `text-ink-muted`,
   `border-line`, `bg-brand`, `bg-success-soft`…), never a hex value in an app.
   That's what makes dark mode work with no extra classes.
-- Titles use `font-serif`. Everything else uses the default `font-sans`.
+- **Two blues.** `brand` is for fills: buttons, progress, step dots. It always
+  carries white text (`text-on-brand`). `brand-ink` is for blue text, links and
+  marks. In dark mode they part: the fill stays a saturated blue that white text
+  reads on, and the text blue lightens so it reads on the dark page.
+- **Instrument Serif is for landmark moments only:** the one headline of a
+  welcome page or a milestone, like being admitted. Not page titles, system
+  messages, cards, names or numbers. Those are DM Sans, semibold. In
+  `PageHeader` that's the `display` option, off by default.
+- **Numbers that matter are JetBrains Mono** (`font-mono`): counts, points,
+  dates in tables.
+- **The colour wash** (yellow, blue and green fields on paper, as in members
+  and auth) is the page background on desktop, and plain paper on phones.
+  `bg-wash` puts it on any element.
 - If an app needs something that isn't here, add it here rather than to the app.
 
 ## What's in it
@@ -59,7 +71,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | | |
 |---|---|
 | `Button`, `ButtonLink`, `buttonClass()` | primary, secondary, ghost, danger; three sizes |
-| `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards` | form controls with label, hint and error |
+| `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards`, `Switch` | form controls with label, hint and error |
 | `Card`, `Section`, `Divider` | grouping |
 | `Badge`, `Notice` | status, in five tones |
 | `Avatar` | a photo, or initials |

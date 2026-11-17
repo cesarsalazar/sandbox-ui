@@ -16,7 +16,7 @@ export function Avatar({ name, src, size = "md", className }: { name: string; sr
     return <img src={src} alt={name} className={cx(cls, "bg-sunken object-cover")} />;
   }
   return (
-    <span role="img" aria-label={name} className={cx(cls, "bg-brand-soft font-medium text-brand")}>
+    <span role="img" aria-label={name} className={cx(cls, "bg-brand-soft font-medium text-brand-ink")}>
       {initials}
     </span>
   );

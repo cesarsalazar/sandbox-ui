@@ -11,7 +11,7 @@ const tones: Record<Tone, string> = {
 };
 const titles: Record<Tone, string> = {
   neutral: "text-ink",
-  brand: "text-brand",
+  brand: "text-brand-ink",
   success: "text-success",
   warning: "text-warning",
   danger: "text-danger",

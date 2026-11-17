@@ -64,10 +64,11 @@
   --ink-faint: #8a8a94; /* placeholders, disabled */
   --line: #e4e4dc; /* borders */
   --line-strong: #c9c9c0;
-  --brand: #211aff; /* Sandbox blue */
+  --brand: #211aff; /* Sandbox blue, for fills: buttons, bars, dots */
   --brand-hover: #1a14cc;
-  --brand-soft: #eeedff;
-  --on-brand: #fffffa;
+  --brand-soft: #eeedff; /* tinted backgrounds */
+  --brand-ink: #211aff; /* Sandbox blue for text, links and marks */
+  --on-brand: #ffffff; /* text on a brand fill */
   --success: #0b7a4b;
   --success-soft: #e3f5ec;
   --warning: #9a5b00;
@@ -75,6 +76,11 @@
   --danger: #c4261d;
   --danger-soft: #fde8e6;
   --focus: #211aff;
+  /* The colour wash behind every page (as in members and auth). */
+  --wash-yellow: rgb(250 204 21 / 0.24);
+  --wash-blue: rgb(33 26 255 / 0.13);
+  --wash-green: rgb(16 185 129 / 0.22);
+  --wash-sky: rgb(56 189 248 / 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -88,17 +94,22 @@
     --ink-faint: #74747f;
     --line: #2a2a37;
     --line-strong: #3d3d4c;
-    --brand: #8580ff;
-    --brand-hover: #a19dff;
+    --brand: #3d37ff;
+    --brand-hover: #5550ff;
     --brand-soft: #1f1d4d;
-    --on-brand: #0b0b12;
+    --brand-ink: #9a96ff;
+    --on-brand: #ffffff;
     --success: #4cc78f;
     --success-soft: #0f2e21;
     --warning: #f0b45a;
     --warning-soft: #33240b;
     --danger: #ff7b72;
     --danger-soft: #3a1513;
-    --focus: #8580ff;
+    --focus: #9a96ff;
+    --wash-yellow: rgb(250 204 21 / 0.07);
+    --wash-blue: rgb(61 55 255 / 0.22);
+    --wash-green: rgb(16 185 129 / 0.10);
+    --wash-sky: rgb(56 189 248 / 0.08);
   }
 }
 
@@ -115,17 +126,22 @@
   --ink-faint: #74747f;
   --line: #2a2a37;
   --line-strong: #3d3d4c;
-  --brand: #8580ff;
-  --brand-hover: #a19dff;
+  --brand: #3d37ff;
+  --brand-hover: #5550ff;
   --brand-soft: #1f1d4d;
-  --on-brand: #0b0b12;
+  --brand-ink: #9a96ff;
+  --on-brand: #ffffff;
   --success: #4cc78f;
   --success-soft: #0f2e21;
   --warning: #f0b45a;
   --warning-soft: #33240b;
   --danger: #ff7b72;
   --danger-soft: #3a1513;
-  --focus: #8580ff;
+  --focus: #9a96ff;
+  --wash-yellow: rgb(250 204 21 / 0.07);
+  --wash-blue: rgb(61 55 255 / 0.22);
+  --wash-green: rgb(16 185 129 / 0.10);
+  --wash-sky: rgb(56 189 248 / 0.08);
 }
 
 [data-theme="light"] {
@@ -141,7 +157,8 @@
   --brand: #211aff;
   --brand-hover: #1a14cc;
   --brand-soft: #eeedff;
-  --on-brand: #fffffa;
+  --brand-ink: #211aff;
+  --on-brand: #ffffff;
   --success: #0b7a4b;
   --success-soft: #e3f5ec;
   --warning: #9a5b00;
@@ -149,6 +166,11 @@
   --danger: #c4261d;
   --danger-soft: #fde8e6;
   --focus: #211aff;
+  /* The colour wash behind every page (as in members and auth). */
+  --wash-yellow: rgb(250 204 21 / 0.24);
+  --wash-blue: rgb(33 26 255 / 0.13);
+  --wash-green: rgb(16 185 129 / 0.22);
+  --wash-sky: rgb(56 189 248 / 0.12);
 }
 
 /* ---------- Tailwind theme ---------- */
@@ -165,6 +187,7 @@
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
   --color-on-brand: var(--on-brand);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
@@ -184,6 +207,22 @@
   --shadow-card: 0 1px 2px rgb(10 10 20 / 0.04), 0 4px 16px rgb(10 10 20 / 0.04);
 }
 
+/* ---------- The colour wash ---------- */
+
+/* Three very low-opacity colour fields (yellow, green, blue) bled into the
+   paper, as members and auth have it. On the page it's fixed, so it reads as
+   one calm wash rather than something that scrolls. bg-wash puts it on any
+   element, such as a preview frame. */
+@utility bg-wash {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(55rem 40rem at 2% -8%, var(--wash-yellow), transparent 62%),
+    radial-gradient(60rem 45rem at 95% 12%, var(--wash-blue), transparent 62%),
+    radial-gradient(55rem 45rem at 5% 95%, var(--wash-green), transparent 62%),
+    radial-gradient(55rem 40rem at 100% 100%, var(--wash-sky), transparent 60%);
+  background-repeat: no-repeat;
+}
+
 /* ---------- Base ---------- */
 
 @layer base {
@@ -192,13 +231,28 @@
   }
 
   body {
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(55rem 40rem at 2% -8%, var(--wash-yellow), transparent 62%),
+      radial-gradient(60rem 45rem at 95% 12%, var(--wash-blue), transparent 62%),
+      radial-gradient(55rem 45rem at 5% 95%, var(--wash-green), transparent 62%),
+      radial-gradient(55rem 40rem at 100% 100%, var(--wash-sky), transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--ink);
     font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Phones get one plain surface, as in members: the wash is for the room a
+     desktop has. */
+  @media (max-width: 767px) {
+    body {
+      background-image: none;
+    }
   }
 
   ::selection {

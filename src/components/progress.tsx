@@ -35,7 +35,7 @@ export function Steps({ steps, className }: { steps: { label: ReactNode; detail?
               className={cx(
                 "flex size-8 shrink-0 items-center justify-center rounded-full border text-sm font-medium",
                 s.state === "done" && "border-brand bg-brand text-on-brand",
-                s.state === "current" && "border-brand bg-brand-soft text-brand",
+                s.state === "current" && "border-brand bg-brand-soft text-brand-ink",
                 s.state === "upcoming" && "border-line-strong bg-surface text-ink-faint",
               )}
             >
