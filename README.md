@@ -10,7 +10,8 @@ From the brand kit (sandbox.is/brand):
 
 - **Blue** `#211AFF`, on paper `#FFFFFA`
 - **Instrument Serif** for landmark headlines
-- **DM Sans** for text
+- **Instrument Sans** for text (the brand kit has DM Sans; Instrument Sans
+  was chosen instead, and members already uses it)
 - **JetBrains Mono** for numbers and code
 - The logo and the flower, which take the text colour
 
@@ -57,7 +58,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
   reads on, and the text blue lightens so it reads on the dark page.
 - **Instrument Serif is for landmark moments only:** the one headline of a
   welcome page or a milestone, like being admitted. Not page titles, system
-  messages, cards, names or numbers. Those are DM Sans, semibold. In
+  messages, cards, names or numbers. Those are Instrument Sans, semibold. In
   `PageHeader` that's the `display` option, off by default.
 - **Numbers that matter are JetBrains Mono** (`font-mono`): counts, points,
   dates in tables.
@@ -72,6 +73,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 |---|---|
 | `Button`, `ButtonLink`, `buttonClass()` | primary, secondary, ghost, danger; three sizes |
 | `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards`, `Switch` | form controls with label, hint and error |
+| `InputGroup`, `GroupInput`, `GroupSelect` | one control in parts, such as country code and phone number |
 | `Card`, `Section`, `Divider` | grouping |
 | `Badge`, `Notice` | status, in five tones |
 | `Avatar` | a photo, or initials |

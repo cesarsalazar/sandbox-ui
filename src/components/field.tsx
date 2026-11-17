@@ -141,3 +141,51 @@ export function Switch({ className, ...props }: Omit<InputHTMLAttributes<HTMLInp
     />
   );
 }
+
+// One control made of parts, such as a country code and a phone number. It
+// draws the single border and focus ring; the parts inside are borderless.
+export function InputGroup({ invalid, className, children }: { invalid?: boolean; className?: string; children: ReactNode }) {
+  return (
+    <div
+      className={cx(
+        "flex h-11 w-full items-stretch overflow-hidden rounded-field border border-line-strong bg-surface transition-colors",
+        "hover:border-ink-faint focus-within:border-brand focus-within:ring-3 focus-within:ring-brand/15",
+        invalid && "border-danger focus-within:border-danger focus-within:ring-danger/15",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+// The text part of an InputGroup.
+export function GroupInput({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      className={cx("h-full min-w-0 flex-1 bg-transparent px-3.5 text-[15px] text-ink placeholder:text-ink-faint focus:outline-none", className)}
+      {...props}
+    />
+  );
+}
+
+// A chooser at the start of an InputGroup, such as the country code: a native
+// select laid over what it shows, so it works with the keyboard and on phones.
+export function GroupSelect({
+  display,
+  className,
+  children,
+  ...props
+}: { display: ReactNode } & SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <div className={cx("relative flex shrink-0 items-center gap-1.5 border-r border-line pr-2.5 pl-3.5 text-[15px] text-ink hover:bg-sunken", className)}>
+      <span className="pointer-events-none flex items-center gap-1.5 whitespace-nowrap">{display}</span>
+      <svg aria-hidden viewBox="0 0 16 16" className="pointer-events-none size-3.5 text-ink-muted">
+        <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <select className="absolute inset-0 cursor-pointer opacity-0" {...props}>
+        {children}
+      </select>
+    </div>
+  );
+}
