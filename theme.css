@@ -1,0 +1,190 @@
+/*
+  Sandbox UI theme.
+
+  Import it after Tailwind, and tell Tailwind to scan the components:
+
+    @import "tailwindcss";
+    @import "sandbox-ui/theme.css";
+    @source "../../node_modules/sandbox-ui/src";
+
+  Colours are tokens on :root, redefined for dark mode. Components only use
+  the token names (bg-paper, text-ink, border-line…), so they switch with the
+  theme without any dark: classes. The page follows the system setting unless
+  <html data-theme="light|dark"> says otherwise.
+*/
+
+/* ---------- Fonts, from the brand kit ---------- */
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Variable.ttf") format("truetype");
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Italic-Variable.ttf") format("truetype");
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("./fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("./fonts/InstrumentSerif-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Variable.ttf") format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Colour tokens ---------- */
+
+:root {
+  color-scheme: light;
+  --paper: #fffffa; /* the page */
+  --surface: #ffffff; /* cards, fields */
+  --sunken: #f5f5ef; /* wells, table headers */
+  --ink: #0a0a0a; /* text */
+  --ink-muted: #5c5c66; /* secondary text */
+  --ink-faint: #8a8a94; /* placeholders, disabled */
+  --line: #e4e4dc; /* borders */
+  --line-strong: #c9c9c0;
+  --brand: #211aff; /* Sandbox blue */
+  --brand-hover: #1a14cc;
+  --brand-soft: #eeedff;
+  --on-brand: #fffffa;
+  --success: #0b7a4b;
+  --success-soft: #e3f5ec;
+  --warning: #9a5b00;
+  --warning-soft: #fdf1dc;
+  --danger: #c4261d;
+  --danger-soft: #fde8e6;
+  --focus: #211aff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0b0b12;
+    --surface: #14141d;
+    --sunken: #101018;
+    --ink: #f4f4ee;
+    --ink-muted: #a6a6b2;
+    --ink-faint: #74747f;
+    --line: #2a2a37;
+    --line-strong: #3d3d4c;
+    --brand: #8580ff;
+    --brand-hover: #a19dff;
+    --brand-soft: #1f1d4d;
+    --on-brand: #0b0b12;
+    --success: #4cc78f;
+    --success-soft: #0f2e21;
+    --warning: #f0b45a;
+    --warning-soft: #33240b;
+    --danger: #ff7b72;
+    --danger-soft: #3a1513;
+    --focus: #8580ff;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0b0b12;
+  --surface: #14141d;
+  --sunken: #101018;
+  --ink: #f4f4ee;
+  --ink-muted: #a6a6b2;
+  --ink-faint: #74747f;
+  --line: #2a2a37;
+  --line-strong: #3d3d4c;
+  --brand: #8580ff;
+  --brand-hover: #a19dff;
+  --brand-soft: #1f1d4d;
+  --on-brand: #0b0b12;
+  --success: #4cc78f;
+  --success-soft: #0f2e21;
+  --warning: #f0b45a;
+  --warning-soft: #33240b;
+  --danger: #ff7b72;
+  --danger-soft: #3a1513;
+  --focus: #8580ff;
+}
+
+/* ---------- Tailwind theme ---------- */
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-focus: var(--focus);
+
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-field: 10px;
+  --radius-card: 16px;
+
+  --shadow-card: 0 1px 2px rgb(10 10 20 / 0.04), 0 4px 16px rgb(10 10 20 / 0.04);
+}
+
+/* ---------- Base ---------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--brand-soft);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Numbers line up in tables and counters. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
