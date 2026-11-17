@@ -193,6 +193,15 @@
   --wash-sky: rgb(56 189 248 / 0.12);
 }
 
+/* The Sign in with Sandbox button (drawn by auth.sandbox.is) reads these, so
+   it takes this page's blue, dark mode included. */
+:root,
+[data-theme] {
+  --sbx-brand: var(--brand);
+  --sbx-brand-hover: var(--brand-hover);
+  --sbx-brand-active: var(--brand-hover);
+}
+
 /* ---------- Tailwind theme ---------- */
 
 @theme inline {
