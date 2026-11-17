@@ -1,6 +1,6 @@
 {
   "name": "sandbox-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sandbox's design system: brand tokens, fonts, logos and React components for Tailwind 4 apps.",
   "license": "UNLICENSED",
   "type": "module",
