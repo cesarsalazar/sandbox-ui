@@ -202,6 +202,20 @@
   --sbx-brand-active: var(--brand-hover);
 }
 
+/* Auth draws the button 45px tall with 15px text, which doesn't line up with
+   anything here. On a sandbox-ui page it takes the large button's size
+   (Button size="lg": 48px, 16px text), and with data-block on its placeholder
+   it fills the row, as a block button does. Two classes beat the one auth's
+   own style uses, whichever loads last. */
+[data-sandbox-signin] .sbx-signin {
+  height: 3rem;
+  padding: 0 1.75rem;
+  font-size: 1rem;
+}
+[data-sandbox-signin][data-block] .sbx-signin {
+  width: 100%;
+}
+
 /* ---------- Tailwind theme ---------- */
 
 @theme inline {

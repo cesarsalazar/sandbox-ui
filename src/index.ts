@@ -10,3 +10,4 @@ export { Notice } from "./components/notice";
 export { Progress, Steps, type StepState } from "./components/progress";
 export { Container, TopBar, NavLink, DetailList } from "./components/layout";
 export { Logo, Flower } from "./components/logo";
+export { SignInFrame, ChoiceLinks } from "./components/sign-in";
