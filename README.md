@@ -65,6 +65,10 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 - **The colour wash** (yellow, blue and green fields on paper, as in members
   and auth) is the page background on desktop, and plain paper on phones.
   `bg-wash` puts it on any element.
+- **Sign-in screens use `SignInFrame`**, with one main action per screen. Where
+  there are two ways in, ask first with `ChoiceLinks`, then show each way on
+  its own screen. "Sign in with Sandbox" takes the large button's size here;
+  add `data-block` to its placeholder to fill the row.
 - If an app needs something that isn't here, add it here rather than to the app.
 
 ## What's in it
@@ -78,6 +82,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `Badge`, `Notice` | status, in five tones |
 | `Avatar` | a photo, or initials |
 | `PageHeader`, `Container`, `TopBar`, `NavLink`, `DetailList` | page structure |
+| `SignInFrame`, `ChoiceLinks` | sign-in screens, laid out as auth.sandbox.is's login: the logo over one centred card, no top bar or footer; and a list of choices for a screen that asks a question first |
 | `Progress`, `Steps` | progress towards a goal, and a numbered process |
 | `EmptyState` | when there's nothing to show yet |
 | `Logo`, `Flower` | the brand marks |
