@@ -57,11 +57,13 @@ import { Button, Card, PageHeader } from "sandbox-ui";
   marks. In dark mode they part: the fill stays a saturated blue that white text
   reads on, and the text blue lightens so it reads on the dark page.
 - **Instrument Serif is for landmark moments only:** the one headline of a
-  welcome page or a milestone, like being admitted. Not page titles, system
-  messages, cards, names or numbers. Those are Instrument Sans, semibold. In
-  `PageHeader` that's the `display` option, off by default.
-- **Numbers that matter are JetBrains Mono** (`font-mono`): counts, points,
-  dates in tables.
+  welcome page or a milestone, like being admitted, and a person's name as
+  the headline of their own profile, under their photo. Not page titles,
+  system messages, cards, names in lists, or numbers. Those are Instrument
+  Sans, semibold. In `PageHeader` that's the `display` option, off by default.
+- **Numbers that matter are JetBrains Mono** (`font-mono`): points, codes,
+  figures in a table column. A count inside a sentence ("1,775 members") stays
+  in Instrument Sans, with `tabular`.
 - **The colour wash** (yellow, blue and green fields on paper, as in members
   and auth) is the page background on desktop, and plain paper on phones.
   `bg-wash` puts it on any element.
@@ -69,6 +71,19 @@ import { Button, Card, PageHeader } from "sandbox-ui";
   there are two ways in, ask first with `ChoiceLinks`, then show each way on
   its own screen. "Sign in with Sandbox" takes the large button's size here;
   add `data-block` to its placeholder to fill the row.
+- **Navigation:** a small app uses the `TopBar`; an app with many sections, or
+  sections with pages of their own, uses the `SideNav`. On a phone, either way,
+  the `TabBar` holds the three or four places people go most.
+- **Create, view and edit share one structure.** Adding a thing and changing it
+  open the same `Dialog`, fields in the same order.
+- **Row actions appear on hover** (`RowActions`): a pencil, archive, delete at
+  the end of a row, not a visible button on every row. They also appear for
+  the keyboard, and always on touch screens.
+- **Details stack, one per line** (`DetailList`), never in columns.
+- **Ask with `ConfirmDialog`**, never the browser's `confirm()`, before
+  anything that can't be undone or that reaches people.
+- **Phones get what a phone is for.** Admin screens (tables, bulk actions)
+  stay on desktop; don't build phone versions of them.
 - If an app needs something that isn't here, add it here rather than to the app.
 
 ## What's in it
@@ -80,8 +95,58 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `InputGroup`, `GroupInput`, `GroupSelect` | one control in parts, such as country code and phone number |
 | `Card`, `Section`, `Divider` | grouping |
 | `Badge`, `Notice` | status, in five tones |
-| `Avatar` | a photo, or initials |
-| `PageHeader`, `Container`, `TopBar`, `NavLink`, `DetailList` | page structure |
+| `Avatar` | a photo, or initials; tries a fallback photo, fades in, greys out someone who has left |
+| `PageHeader`, `Container`, `TopBar`, `NavLink`, `DetailList` | page structure; details stack one per line |
+| `IconButton` | a button that's only an icon (quiet, outline, soft, danger), always with a label |
+| `MemberCard`, `MemberGrid` | people in a directory on desktop: vertical cards, photo on top, equal heights |
+| `PersonRow`, `PersonList` | people in a list on a phone |
+| `Table`, `THead`, `Th`, `TBody`, `Tr`, `Td`, `TdActions`, `RowActions` | records on desktop, with actions that appear on hover |
+| `Dialog`, `DialogActions`, `ConfirmDialog` | a box on desktop, a sheet from the bottom on a phone (swipe or back to close, stays above the keyboard); asking before something that can't be undone |
+| `SegmentedControl` | two to four views of one list: Active and Archived |
+| `SearchInput`, `Pagination` | finding and paging through long lists |
+| `CopyButton`, `Skeleton` | copying a value; grey shapes while content loads |
+| `ToastProvider`, `useToast` | short confirmations: "Link copied", "Saved" |
+| `SideNav`, `SideNavItem`, `SideNavSubItem`, `SideNavLayout` | navigation down the left side, for apps with many sections |
+| `TabBar`, `TabBarItem` | the tabs at the bottom of a phone: a floating capsule on iPhone, a full-width bar on Android |
+| `PhoneBar`, `PhoneBarBack`, `PhoneBarClose`, `PhoneBarAction`, `LargeTitle` | the top of a phone screen |
+| `RowGroup`, `Row`, `SwitchRow` | a phone's settings and choices |
+| `PhotoViewer` | a photo shown whole, on black |
+| `WelcomeScreen`, `WelcomeAction` | the first screen of the installed app, before signing in |
+| `InstallPrompt` | asks phone users in the browser to add the app to their home screen |
+| `OfflineScreen`, `OfflineBanner`, `ServiceWorker` | working without a connection |
+| `useStandalone`, `useOnline`, `useInstallPrompt` | is the app installed, is there a connection, can Android install it |
+
+Components that are links take `as`, so an app can pass Next.js's `Link`
+(`<MemberCard as={Link} href=… />`).
+
+## Installed app (PWA)
+
+Sandbox apps install on a phone's home screen and open full screen, like any
+other app. For an app to do that well:
+
+1. **Manifest and viewport.** In `app/manifest.ts`, return
+   `appManifest({ name, description, startUrl })` from `sandbox-ui/pwa`. In
+   `app/layout.tsx`, `export const viewport = appViewport()` (or
+   `appViewport({ dark: false })` for an app shown only in light), and spread
+   `appMetadata({ name })` into `metadata`.
+2. **Icons** in `public/icons`: `icon-192.png` and `icon-512.png` (the flower
+   on Sandbox blue, to the edges) and `maskable-512.png` (the flower inside
+   the middle 80%, since Android crops icons into its own shapes), and
+   `public/apple-touch-icon.png` at 180 pixels for iPhone.
+3. **Offline.** Copy `sandbox-ui/pwa/sw.js` to `public/sw.js`, add an
+   `/offline` page that renders `<OfflineScreen appName=… />`, and put
+   `<ServiceWorker />` in the root layout. The worker caches only that page.
+4. **Platform.** Pick the tab bar's form from the request:
+   `platformFromUserAgent(headers().get("user-agent"))`.
+5. **Screens.** Before signing in, the app opens on a `WelcomeScreen`. Signed
+   in, in a phone's browser, show `InstallPrompt` once near the top of the
+   first screen. Give every screen `pt-safe`/`pb-safe` room (`LargeTitle`,
+   `PhoneBar` and `TabBar` already do).
+
+## Preview
+
+`npm install`, then `npm run preview` and open http://localhost:3070: every
+component working, phone screens at iPhone size, and desktop examples.
 | `SignInFrame`, `ChoiceLinks` | sign-in screens, laid out as auth.sandbox.is's login: the logo over one centred card, no top bar or footer; and a list of choices for a screen that asks a question first |
 | `Progress`, `Steps` | progress towards a goal, and a numbered process |
 | `EmptyState` | when there's nothing to show yet |

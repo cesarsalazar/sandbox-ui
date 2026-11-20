@@ -37,14 +37,15 @@ export function NavLink({ href, active, children }: { href: string; active?: boo
   );
 }
 
-// Label and value pairs, such as a profile's details.
+// Label and value pairs, such as a profile's details: one per line, the label
+// above its value, between hairlines. Never in columns; a reader scans down.
 export function DetailList({ items, className }: { items: { label: ReactNode; value: ReactNode }[]; className?: string }) {
   return (
-    <dl className={cx("grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2", className)}>
+    <dl className={cx("divide-y divide-line", className)}>
       {items.map((it, i) => (
-        <div key={i} className="flex min-w-0 flex-col gap-0.5">
-          <dt className="text-xs font-medium tracking-wide text-ink-faint uppercase">{it.label}</dt>
-          <dd className="text-[15px] break-words text-ink">{it.value}</dd>
+        <div key={i} className="flex min-w-0 flex-col gap-0.5 py-3 first:pt-0 last:pb-0">
+          <dt className="text-sm text-ink-muted">{it.label}</dt>
+          <dd className="text-base break-words text-ink">{it.value}</dd>
         </div>
       ))}
     </dl>

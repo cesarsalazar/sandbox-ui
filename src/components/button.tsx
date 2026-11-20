@@ -40,3 +40,37 @@ export function Button({ variant, size, block, className, type = "button", ...pr
 export function ButtonLink({ variant, size, block, className, ...props }: Common & AnchorHTMLAttributes<HTMLAnchorElement>) {
   return <a className={cx(buttonClass({ variant, size, block }), className)} {...props} />;
 }
+
+// A button that is only an icon: a row's pencil, a dialog's close, a profile's
+// share. `label` is required, since there's no text for a screen reader.
+// "quiet" is grey until hovered, for actions beside content; "outline" is the
+// round secondary button of a profile's action row; "soft" sits on a sheet or
+// a coloured surface; "danger" turns red on hover, for delete.
+const iconVariants = {
+  quiet: "text-ink-muted hover:bg-sunken hover:text-ink",
+  outline: "border border-line-strong bg-surface text-ink hover:border-ink-muted",
+  soft: "bg-sunken text-ink-muted hover:text-ink",
+  danger: "text-ink-muted hover:bg-danger-soft hover:text-danger",
+};
+const iconSizes = { sm: "size-8", md: "size-10", lg: "size-12" };
+
+export type IconButtonVariant = keyof typeof iconVariants;
+
+export function iconButtonClass({ variant = "quiet", size = "md" }: { variant?: IconButtonVariant; size?: keyof typeof iconSizes } = {}) {
+  return cx(
+    "inline-flex shrink-0 items-center justify-center rounded-full transition-colors disabled:pointer-events-none disabled:opacity-50",
+    iconVariants[variant],
+    iconSizes[size],
+  );
+}
+
+export function IconButton({
+  label,
+  variant,
+  size,
+  className,
+  type = "button",
+  ...props
+}: { label: string; variant?: IconButtonVariant; size?: keyof typeof iconSizes } & ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <button type={type} aria-label={label} title={label} className={cx(iconButtonClass({ variant, size }), className)} {...props} />;
+}

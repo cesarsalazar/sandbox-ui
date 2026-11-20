@@ -1,2 +1,5 @@
 node_modules
 .DS_Store
+/preview/.next
+/preview/next-env.d.ts
+*.tsbuildinfo
