@@ -55,8 +55,8 @@ export function SegmentedControl<T extends string>({
 }
 
 // A search field: the magnifying glass inside, and optionally how many results
-// there are at the end ("1–50 of 1,775"). Say in the placeholder what it
-// searches.
+// there are at the end ("1–50 of 1,775"), on desktop; a phone is too narrow
+// for both. Say in the placeholder what it searches.
 export function SearchInput({
   count,
   className,
@@ -70,12 +70,12 @@ export function SearchInput({
         className={cx(
           "h-11 w-full rounded-field border border-line-strong bg-surface pl-11 text-[15px] text-ink placeholder:text-ink-faint transition-colors",
           "hover:border-ink-faint focus:border-brand focus:ring-3 focus:ring-brand/15 focus:outline-none [&::-webkit-search-cancel-button]:hidden",
-          count !== undefined ? "pr-32" : "pr-3.5",
+          count !== undefined ? "pr-3.5 md:pr-32" : "pr-3.5",
         )}
         {...props}
       />
       {count !== undefined && (
-        <span className="tabular pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-sm text-ink-faint">{count}</span>
+        <span className="tabular pointer-events-none absolute top-1/2 right-3.5 hidden -translate-y-1/2 text-sm text-ink-faint md:block">{count}</span>
       )}
     </div>
   );

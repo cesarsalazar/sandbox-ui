@@ -7,6 +7,18 @@ const control =
   "transition-colors hover:border-ink-faint focus:border-brand focus:outline-none focus:ring-3 focus:ring-brand/15 " +
   "disabled:bg-sunken disabled:text-ink-faint aria-invalid:border-danger aria-invalid:focus:ring-danger/15";
 
+// The same look for a control an app draws itself (a date input inside its own
+// layout, a field another library renders): the box, the label above it, and
+// the hint or error under it.
+export const fieldClasses = {
+  input: `${control} h-11`,
+  select: `${control} h-11 appearance-none pr-10`,
+  textarea: `${control} min-h-24 py-2.5 leading-relaxed`,
+  label: "block text-sm font-medium text-ink",
+  hint: "text-sm text-ink-muted",
+  error: "text-sm text-danger",
+};
+
 // A label, the control, and a hint or error under it. Pass the control as the
 // child; Field gives it an id and links the hint and error to it.
 export function Field({

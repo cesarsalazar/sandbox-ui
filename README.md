@@ -92,6 +92,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 |---|---|
 | `Button`, `ButtonLink`, `buttonClass()` | primary, secondary, ghost, danger; three sizes |
 | `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards`, `Switch` | form controls with label, hint and error |
+| `fieldClasses` | the same look for a control an app draws itself: `input`, `select`, `textarea`, `label`, `hint`, `error` |
 | `InputGroup`, `GroupInput`, `GroupSelect` | one control in parts, such as country code and phone number |
 | `Card`, `Section`, `Divider` | grouping |
 | `Badge`, `Notice` | status, in five tones |
@@ -101,7 +102,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `MemberCard`, `MemberGrid` | people in a directory on desktop: vertical cards, photo on top, equal heights |
 | `PersonRow`, `PersonList` | people in a list on a phone |
 | `Table`, `THead`, `Th`, `TBody`, `Tr`, `Td`, `TdActions`, `RowActions` | records on desktop, with actions that appear on hover |
-| `Dialog`, `DialogActions`, `ConfirmDialog` | a box on desktop, a sheet from the bottom on a phone (swipe or back to close, stays above the keyboard); asking before something that can't be undone |
+| `Dialog`, `DialogActions`, `ConfirmDialog` | sizes sm to xl; a box on desktop, a sheet from the bottom on a phone (swipe or back to close, stays above the keyboard); asking before something that can't be undone |
 | `SegmentedControl` | two to four views of one list: Active and Archived |
 | `SearchInput`, `Pagination` | finding and paging through long lists |
 | `CopyButton`, `Skeleton` | copying a value; grey shapes while content loads |

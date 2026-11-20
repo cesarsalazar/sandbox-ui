@@ -58,7 +58,7 @@ export function SideNavItem({
   href?: string;
   icon?: ReactNode;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   as?: ElementType;
   children: ReactNode;
   subItems?: ReactNode;

@@ -9,7 +9,7 @@ export {
   type ButtonSize,
   type IconButtonVariant,
 } from "./components/button";
-export { Field, Input, Textarea, Select, Checkbox, ChoiceCards, Switch, InputGroup, GroupInput, GroupSelect } from "./components/field";
+export { Field, Input, Textarea, Select, Checkbox, ChoiceCards, Switch, InputGroup, GroupInput, GroupSelect, fieldClasses } from "./components/field";
 export { Card, Section, Divider } from "./components/card";
 export { Badge, type Tone } from "./components/badge";
 export { Avatar, initialsOf, type AvatarSize } from "./components/avatar";

@@ -67,14 +67,19 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), selec
 // the dialog itself), stays inside while it's open, and returns to whatever
 // opened it when it closes.
 function useFocusTrap(panel: React.RefObject<HTMLDivElement | null>) {
+  // What had focus before the dialog opened, taken while it first draws, before
+  // a field inside it takes focus.
+  const opener = useRef<HTMLElement | null>(typeof document === "undefined" ? null : (document.activeElement as HTMLElement | null));
   useEffect(() => {
-    const opener = document.activeElement as HTMLElement | null;
     const el = panel.current;
     if (!el) return;
-    // A field marked autoFocus, or the dialog itself: never the close button,
-    // which would open the sheet with a focus ring on it.
-    const first = el.querySelector<HTMLElement>("[autofocus], [data-autofocus]");
-    (first ?? el).focus({ preventScroll: true });
+    // React focuses a field marked autoFocus itself; otherwise a field marked
+    // data-autofocus, or the dialog. Never the close button, which would open
+    // the sheet with a focus ring on it.
+    if (!el.contains(document.activeElement)) {
+      const first = el.querySelector<HTMLElement>("[data-autofocus]");
+      (first ?? el).focus({ preventScroll: true });
+    }
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
       const items = Array.from(el.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((n) => n.offsetParent !== null);
@@ -90,14 +95,15 @@ function useFocusTrap(panel: React.RefObject<HTMLDivElement | null>) {
       }
     };
     el.addEventListener("keydown", onKey);
+    const back = opener.current;
     return () => {
       el.removeEventListener("keydown", onKey);
-      opener?.focus?.();
+      back?.focus?.();
     };
   }, [panel]);
 }
 
-const widths = { sm: "md:max-w-sm", md: "md:max-w-md", lg: "md:max-w-xl" };
+const widths = { sm: "md:max-w-sm", md: "md:max-w-md", lg: "md:max-w-xl", xl: "md:max-w-3xl" };
 
 function DialogPanel({
   title,

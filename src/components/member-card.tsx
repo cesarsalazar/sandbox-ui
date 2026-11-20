@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from "react";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 import { Avatar } from "./avatar";
 import { cx } from "./cx";
 
@@ -22,6 +22,7 @@ export function MemberCard({
   former = false,
   as: Component = "a",
   className,
+  style,
 }: {
   href?: string;
   firstName: string;
@@ -36,11 +37,14 @@ export function MemberCard({
   former?: boolean;
   as?: ElementType;
   className?: string;
+  /** For an entrance animation's delay, say. */
+  style?: CSSProperties;
 }) {
   const label = status ?? role;
   return (
     <Component
       href={href}
+      style={style}
       className={cx(
         "group flex h-full min-h-[288px] flex-col items-center rounded-card border border-line bg-surface px-4 pt-10 pb-6 text-center shadow-card transition-[border-color,box-shadow]",
         href && "hover:border-brand/30 hover:shadow-[0_2px_4px_rgb(10_10_20/0.04),0_12px_32px_rgb(10_10_20/0.08)] focus-visible:border-brand",
@@ -94,6 +98,7 @@ export function PersonRow({
   trailing,
   as: Component = "a",
   className,
+  style,
 }: {
   href?: string;
   name: string;
@@ -106,9 +111,10 @@ export function PersonRow({
   trailing?: ReactNode;
   as?: ElementType;
   className?: string;
+  style?: CSSProperties;
 }) {
   return (
-    <Component href={href} className={cx("flex min-h-[76px] items-center gap-4 py-2.5", className)}>
+    <Component href={href} style={style} className={cx("flex min-h-[76px] items-center gap-4 py-2.5", className)}>
       <Avatar name={name} src={photo} fallbackSrc={photoFallback} size="lg" former={former} />
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className={cx("truncate text-[17px] font-semibold", former ? "text-ink-muted" : "text-ink")}>{name}</span>
