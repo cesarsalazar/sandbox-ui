@@ -6,6 +6,8 @@ import {
   Button,
   ConfirmDialog,
   CopyButton,
+  CopyIconButton,
+  CopyText,
   DetailList,
   Dialog,
   DialogActions,
@@ -215,6 +217,19 @@ export default function Preview() {
               <CopyButton text="https://sandbox.is/ana-lopez" label="Copy link" />
               <CopyButton text="example" label="Copy key" variant="primary" />
             </div>
+            <p className="text-sm text-ink-muted">A value whose icon appears on hover</p>
+            <CopyText text="https://events.sandbox.is/auth/callback" label="Copy callback URL" />
+            <p className="text-sm text-ink-muted">A list: copy in each row&apos;s actions, on hover</p>
+            <ul className="divide-y divide-line rounded-field border border-line">
+              {["{{preferred_name}}", "{{hub}}", "{{profile_url}}"].map((v) => (
+                <li key={v} className="group/row flex items-center gap-3 px-3.5 py-1 hover:bg-sunken/60">
+                  <code className="flex-1 font-mono text-sm">{v}</code>
+                  <RowActions>
+                    <CopyIconButton text={v} label={`Copy ${v}`} />
+                  </RowActions>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="flex flex-col gap-3">
             <p className="text-sm font-medium text-ink-muted">Icon buttons</p>

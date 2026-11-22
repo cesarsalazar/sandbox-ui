@@ -75,6 +75,7 @@ export function Td({
 // row. They appear when the pointer is over the row, so a long list stays
 // calm, and also whenever one of them has keyboard focus, and always on a
 // touch screen, which has no hover. Clicks on them don't open the row.
+// Outside a Table, give the row the group/row class.
 export function RowActions({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <div

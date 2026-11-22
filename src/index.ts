@@ -24,7 +24,7 @@ export { SignInFrame, ChoiceLinks } from "./components/sign-in";
 // Directories and records
 export { MemberCard, MemberGrid, PersonRow, PersonList } from "./components/member-card";
 export { Table, THead, Th, TBody, Tr, Td, TdActions, RowActions } from "./components/table";
-export { SegmentedControl, SearchInput, Pagination, CopyButton, Skeleton } from "./components/controls";
+export { SegmentedControl, SearchInput, Pagination, CopyButton, CopyIconButton, CopyText, Skeleton } from "./components/controls";
 
 // Dialogs and feedback
 export { Dialog, DialogActions, ConfirmDialog } from "./components/dialog";

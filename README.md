@@ -79,6 +79,13 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 - **Row actions appear on hover** (`RowActions`): a pencil, archive, delete at
   the end of a row, not a visible button on every row. They also appear for
   the keyboard, and always on touch screens.
+- **Copy appears on hover too.** In a list where every row has something to
+  copy, the copy icon (`CopyIconButton`) goes in the row's `RowActions` (a
+  row outside a `Table` needs the `group/row` class); for
+  values shown among others, like an app's address and ID, `CopyText` shows
+  the icon when the pointer is on the value. Never a Copy button repeated on
+  every row. One value shown once, like a new key, keeps a visible
+  `CopyButton`.
 - **Details stack, one per line** (`DetailList`), never in columns.
 - **Ask with `ConfirmDialog`**, never the browser's `confirm()`, before
   anything that can't be undone or that reaches people.
@@ -105,7 +112,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `Dialog`, `DialogActions`, `ConfirmDialog` | sizes sm to xl; a box on desktop, a sheet from the bottom on a phone (swipe or back to close, stays above the keyboard); asking before something that can't be undone |
 | `SegmentedControl` | two to four views of one list: Active and Archived |
 | `SearchInput`, `Pagination` | finding and paging through long lists |
-| `CopyButton`, `Skeleton` | copying a value; grey shapes while content loads |
+| `CopyButton`, `CopyIconButton`, `CopyText`, `Skeleton` | copying a value: a button, an icon for row actions, a value whose icon appears on hover; grey shapes while content loads |
 | `ToastProvider`, `useToast` | short confirmations: "Link copied", "Saved" |
 | `SideNav`, `SideNavItem`, `SideNavSubItem`, `SideNavLayout` | navigation down the left side, for apps with many sections |
 | `TabBar`, `TabBarItem` | the tabs at the bottom of a phone: a floating capsule on iPhone, a full-width bar on Android |

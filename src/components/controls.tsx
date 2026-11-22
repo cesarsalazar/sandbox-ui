@@ -2,7 +2,7 @@
 
 import { useState, type InputHTMLAttributes, type ReactNode } from "react";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, CopyIcon, SearchIcon } from "./icons";
-import { buttonClass, type ButtonVariant } from "./button";
+import { buttonClass, iconButtonClass, type ButtonVariant } from "./button";
 import { cx } from "./cx";
 
 // Two to four views of the same list: Active and Archived broadcasts, a
@@ -126,6 +126,18 @@ export function CopyButton({
   onCopy?: () => void;
   className?: string;
 }) {
+  const [copied, copy] = useCopy(text, onCopy);
+  return (
+    <button type="button" onClick={copy} className={cx(buttonClass({ variant, size }), className)}>
+      {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
+      <span aria-live="polite">{copied ? "Copied" : label}</span>
+    </button>
+  );
+}
+
+// Copying, and saying so for two seconds. If the browser refuses (the page
+// isn't focused, say), nothing happens and nothing breaks.
+function useCopy(text: string, onCopy?: () => void): [boolean, () => Promise<void>] {
   const [copied, setCopied] = useState(false);
   async function copy() {
     try {
@@ -137,11 +149,66 @@ export function CopyButton({
     onCopy?.();
     setTimeout(() => setCopied(false), 2000);
   }
+  return [copied, copy];
+}
+
+// Copy as an icon, for where the value it copies is right beside it. In a
+// list, put it in RowActions so it appears on hover, like the row's other
+// actions, rather than repeating on every row.
+export function CopyIconButton({
+  text,
+  label = "Copy",
+  size = "sm",
+  onCopy,
+  className,
+}: {
+  text: string;
+  /** What it copies, for screen readers and the tooltip: "Copy app ID". */
+  label?: string;
+  size?: "sm" | "md";
+  onCopy?: () => void;
+  className?: string;
+}) {
+  const [copied, copy] = useCopy(text, onCopy);
   return (
-    <button type="button" onClick={copy} className={cx(buttonClass({ variant, size }), className)}>
-      {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
-      <span aria-live="polite">{copied ? "Copied" : label}</span>
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={copied ? "Copied" : label}
+      title={copied ? "Copied" : label}
+      className={cx(iconButtonClass({ size }), className)}
+    >
+      {copied ? <CheckIcon size={16} className="text-success" /> : <CopyIcon size={16} />}
     </button>
+  );
+}
+
+// A value with its copy icon after it, the icon appearing when the pointer
+// is over the value, whenever it has keyboard focus, and always on a touch
+// screen. For values shown among others, like an app's address and ID. A
+// value shown once that must be copied now (a new key) gets a CopyButton,
+// always visible, instead.
+export function CopyText({
+  text,
+  label = "Copy",
+  children,
+  className,
+}: {
+  text: string;
+  label?: string;
+  /** How the value shows; the text itself in mono when left out. */
+  children?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span className={cx("group/copy inline-flex max-w-full min-w-0 items-center gap-1", className)}>
+      {children ?? <code className="font-mono text-[13px] break-all text-ink">{text}</code>}
+      <CopyIconButton
+        text={text}
+        label={label}
+        className="-my-1.5 shrink-0 opacity-0 transition-opacity group-hover/copy:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100"
+      />
+    </span>
   );
 }
 
