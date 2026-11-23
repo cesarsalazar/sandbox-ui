@@ -298,8 +298,10 @@
     }
   }
 
+  /* Selected text: the brand blue, faint enough to read through. In dark
+     mode the tinted background was too close to the page to see. */
   ::selection {
-    background: var(--brand-soft);
+    background: color-mix(in srgb, var(--brand) 32%, transparent);
   }
 
   :focus-visible {

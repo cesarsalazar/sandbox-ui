@@ -61,6 +61,10 @@ export {
 } from "./components/app";
 export type { Platform } from "./pwa";
 
+// Links: someone's site and profiles, with each site's icon.
+export { LinkIcon, LinkList, LinksEditor } from "./components/links";
+export { MAX_LINKS, normalizeLink, displayLink, siteOf, type Site } from "./links";
+
 // The icons the components use, for apps that want theirs to match.
 export {
   XIcon,
@@ -72,4 +76,6 @@ export {
   CopyIcon,
   PencilIcon,
   ShareIcon,
+  GlobeIcon,
+  PlusIcon,
 } from "./components/icons";

@@ -104,6 +104,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `Card`, `Section`, `Divider` | grouping |
 | `Badge`, `Notice` | status, in five tones |
 | `Avatar` | a photo, or initials; tries a fallback photo, fades in, greys out someone who has left |
+| `LinksEditor`, `LinkList`, `LinkIcon` | someone's links: edited a box at a time with each site's icon as it's typed, and shown with it; `normalizeLink` cleans them on the server |
 | `PageHeader`, `Container`, `TopBar`, `NavLink`, `DetailList` | page structure; details stack one per line |
 | `ProfileMenu`, `MenuItem`, `MenuDivider` | the person's photo at the end of the `TopBar`, opening a menu with their name and email, any app choices (a `selected` item shows a check), and sign out. Pass sign out as a `MenuItem type="submit"` inside a POST form |
 | `IconButton` | a button that's only an icon (quiet, outline, soft, danger), always with a label |
