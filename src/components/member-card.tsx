@@ -85,8 +85,8 @@ export function MemberGrid({ children, className }: { children: ReactNode; class
   return <div className={cx("grid grid-cols-[repeat(auto-fill,minmax(176px,1fr))] gap-3", className)}>{children}</div>;
 }
 
-// A person in a list on a phone: photo, name, and a line under it (their role
-// in blue, then where they're based). The whole row is the link.
+// A person in a list on a phone: photo, name, then where they're based and
+// their role in blue, each on its own line. The whole row is the link.
 export function PersonRow({
   href,
   name,
@@ -118,13 +118,8 @@ export function PersonRow({
       <Avatar name={name} src={photo} fallbackSrc={photoFallback} size="lg" former={former} />
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className={cx("truncate text-[17px] font-semibold", former ? "text-ink-muted" : "text-ink")}>{name}</span>
-        {(role || place) && (
-          <span className="truncate text-[15px]">
-            {role && <span className="font-medium text-brand-ink">{role}</span>}
-            {role && place && <span className="text-ink-faint"> · </span>}
-            {place && <span className="text-ink-muted">{place}</span>}
-          </span>
-        )}
+        {place && <span className="truncate text-[15px] text-ink-muted">{place}</span>}
+        {role && <span className="truncate text-[15px] font-medium text-brand-ink">{role}</span>}
       </span>
       {trailing}
     </Component>

@@ -85,11 +85,10 @@ function Profile({ platform, sheet = false }: { platform: Platform; sheet?: bool
         <div className="flex flex-col items-center gap-3 pt-safe text-center">
           <Avatar name="Ana López" size="2xl" className="mt-10" />
           <h1 className="pt-3 font-serif text-[44px] leading-[1.02] text-ink">Ana López</h1>
-          <p className="text-[17px]">
-            <span className="font-medium text-brand-ink">Board member</span>
-            <span className="text-ink-faint"> · </span>
-            <span className="text-ink-muted">Mexico City</span>
-          </p>
+          <div className="flex flex-col gap-0.5 text-[17px]">
+            <p className="text-ink-muted">Mexico City</p>
+            <p className="font-medium text-brand-ink">Board member</p>
+          </div>
         </div>
         <div className="mt-6 flex items-center gap-3">
           <Button size="lg" className="flex-1" onClick={() => setEditing(true)}>
