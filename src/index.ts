@@ -32,7 +32,7 @@ export { Dialog, DialogActions, ConfirmDialog } from "./components/dialog";
 export { ToastProvider, useToast } from "./components/toast";
 
 // Navigation
-export { SideNav, SideNavItem, SideNavSubItem, SideNavLayout } from "./components/side-nav";
+export { SideNav, SideNavGroup, SideNavItem, SideNavSubItem, SideNavLayout } from "./components/side-nav";
 export {
   TabBar,
   TabBarItem,
@@ -70,6 +70,7 @@ export {
   XIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ArrowUpRightIcon,
   ChevronDownIcon,
   SearchIcon,
   CheckIcon,

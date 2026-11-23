@@ -77,6 +77,12 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 - **Navigation:** a small app uses the `TopBar`; an app with many sections, or
   sections with pages of their own, uses the `SideNav`. On a phone, either way,
   the `TabBar` holds the three or four places people go most.
+- **Side menu order:** the person's own page, then the app's main sections,
+  then groups under small headings (`SideNavGroup`): quick links to the other
+  Sandbox apps (`external`, opening in a new tab with an arrow), the app's
+  admin pages, and pages for developers. A group shows only to people who can
+  use something in it. Its heading opens and shuts it: groups start open,
+  and each browser remembers how it was left (`storageKey`).
 - **Create, view and edit share one structure.** Adding a thing and changing it
   open the same `Dialog`, fields in the same order.
 - **Row actions appear on hover** (`RowActions`): a pencil, archive, delete at
@@ -119,7 +125,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | `SearchInput`, `Pagination` | finding and paging through long lists |
 | `CopyButton`, `CopyIconButton`, `CopyText`, `Skeleton` | copying a value: a button, an icon for row actions, a value whose icon appears on hover; grey shapes while content loads |
 | `ToastProvider`, `useToast` | short confirmations: "Link copied", "Saved" |
-| `SideNav`, `SideNavItem`, `SideNavSubItem`, `SideNavLayout` | navigation down the left side, for apps with many sections |
+| `SideNav`, `SideNavGroup`, `SideNavItem`, `SideNavSubItem`, `SideNavLayout` | navigation down the left side, for apps with many sections; groups under small headings, and links to other apps |
 | `TabBar`, `TabBarItem` | the tabs at the bottom of a phone: a floating capsule on iPhone, a full-width bar on Android |
 | `PhoneBar`, `PhoneBarBack`, `PhoneBarClose`, `PhoneBarAction`, `LargeTitle` | the top of a phone screen |
 | `RowGroup`, `Row`, `SwitchRow` | a phone's settings and choices |

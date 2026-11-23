@@ -33,6 +33,7 @@ function make(paths: string[], displayName: string) {
 export const XIcon = make(["M18 6 6 18", "m6 6 12 12"], "XIcon");
 export const ChevronLeftIcon = make(["m15 18-6-6 6-6"], "ChevronLeftIcon");
 export const ChevronRightIcon = make(["m9 18 6-6-6-6"], "ChevronRightIcon");
+export const ArrowUpRightIcon = make(["M7 7h10v10", "M7 17 17 7"], "ArrowUpRightIcon");
 export const ChevronDownIcon = make(["m6 9 6 6 6-6"], "ChevronDownIcon");
 export const SearchIcon = make(["M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z", "m21 21-4.3-4.3"], "SearchIcon");
 export const CheckIcon = make(["M20 6 9 17l-5-5"], "CheckIcon");
