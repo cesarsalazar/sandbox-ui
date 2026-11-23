@@ -32,7 +32,8 @@ export { Dialog, DialogActions, ConfirmDialog } from "./components/dialog";
 export { ToastProvider, useToast } from "./components/toast";
 
 // Navigation
-export { SideNav, SideNavGroup, SideNavItem, SideNavSubItem, SideNavLayout } from "./components/side-nav";
+export { SideNav, SideNavItem, SideNavSubItem, SideNavLayout } from "./components/side-nav";
+export { SideNavGroup } from "./components/side-nav-group";
 export {
   TabBar,
   TabBarItem,

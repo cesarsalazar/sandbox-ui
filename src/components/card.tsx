@@ -21,12 +21,14 @@ export function Section({
 }) {
   return (
     <section className={cx("flex flex-col gap-4", className)}>
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div className="flex flex-col gap-1">
+      {/* The actions stay beside the title and description, however long it
+          runs; only on a phone do they wrap underneath. */}
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
+        <div className="flex min-w-0 flex-col gap-1">
           <h2 className="text-lg font-semibold text-ink">{title}</h2>
           {description && <p className="text-sm text-ink-muted">{description}</p>}
         </div>
-        {actions && <div className="flex gap-2">{actions}</div>}
+        {actions && <div className="flex shrink-0 gap-2">{actions}</div>}
       </div>
       {children}
     </section>

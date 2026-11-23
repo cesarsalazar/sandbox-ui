@@ -20,10 +20,10 @@ import {
   THead,
   Tr,
   useToast,
-} from "../../../../src";
-import { DesktopShell } from "../shell";
-import { Plus, Trash } from "../../icons";
-import { HUBS } from "../../people";
+} from "../../../src";
+import { AppShell } from "../shell";
+import { Plus, Trash } from "../icons";
+import { HUBS } from "../people";
 
 export default function DesktopHubs() {
   const toast = useToast();
@@ -36,7 +36,7 @@ export default function DesktopHubs() {
     setName(hub);
   };
   return (
-    <DesktopShell active="hubs">
+    <AppShell active="hubs">
       <PageHeader
         title="Hubs"
         description="12 hubs, where members are based"
@@ -115,6 +115,6 @@ export default function DesktopHubs() {
         confirmLabel="Delete hub"
         danger
       />
-    </DesktopShell>
+    </AppShell>
   );
 }

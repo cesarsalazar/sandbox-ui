@@ -165,7 +165,10 @@ other app. For an app to do that well:
 ## Preview
 
 `npm install`, then `npm run preview` and open http://localhost:3070: every
-component working, phone screens at iPhone size, and desktop examples.
+component working, and whole screens built from them. Each screen is one page
+that works at every size, as an app's should; the front page shows each at
+iPhone size and at desktop size, from the same address. Don't make separate
+phone and desktop versions of a screen.
 | `SignInFrame`, `ChoiceLinks` | sign-in screens, laid out as auth.sandbox.is's login: the logo over one centred card, no top bar or footer; and a list of choices for a screen that asks a question first |
 | `Progress`, `Steps` | progress towards a goal, and a numbered process |
 | `EmptyState` | when there's nothing to show yet |

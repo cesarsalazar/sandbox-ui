@@ -40,15 +40,23 @@ import {
 import { Archive, Trash } from "./icons";
 import { PEOPLE } from "./people";
 
-const PHONES: { screen: string; label: string; platform?: "android" }[] = [
-  { screen: "welcome", label: "Welcome" },
-  { screen: "install", label: "Add to Home Screen" },
-  { screen: "directory", label: "Directory (iPhone)" },
-  { screen: "directory", label: "Directory (Android)", platform: "android" },
-  { screen: "profile", label: "Your profile" },
-  { screen: "sheet", label: "Sheet" },
-  { screen: "account", label: "Account settings" },
-  { screen: "offline", label: "Offline" },
+// Every screen in the preview. Each is one page that works at every size, as
+// members' are; the frames below show the same address at phone and desktop
+// width. A screen can also be opened full size.
+// Every screen in the preview, at the sizes members uses it: the installed
+// app's screens and Account only on a phone, admin pages only on desktop, and the rest at both, each one page styled for each size.
+type Size = "phone" | "desktop";
+const BOTH: Size[] = ["phone", "desktop"];
+const SCREENS: { path: string; label: string; sizes: Size[] }[] = [
+  { path: "/welcome", label: "Welcome", sizes: ["phone"] },
+  { path: "/members", label: "Directory", sizes: BOTH },
+  { path: "/members?install=1", label: "Directory, with Add to Home Screen", sizes: ["phone"] },
+  { path: "/members?platform=android", label: "Directory, Android's tab bar", sizes: ["phone"] },
+  { path: "/profile", label: "Your profile", sizes: BOTH },
+  { path: "/profile?sheet=1", label: "Edit profile", sizes: BOTH },
+  { path: "/account", label: "Account", sizes: ["phone"] },
+  { path: "/offline", label: "Offline", sizes: ["phone"] },
+  { path: "/hubs", label: "Hubs", sizes: ["desktop"] },
 ];
 
 function Block({ id, title, note, children }: { id: string; title: string; note?: ReactNode; children: ReactNode }) {
@@ -82,19 +90,8 @@ export default function Preview() {
           <p className="text-sm font-medium text-brand-ink">sandbox-ui preview</p>
           <h1 className="text-[34px] font-semibold tracking-tight text-ink">Components for Sandbox apps</h1>
           <p className="max-w-2xl text-[17px] leading-relaxed text-ink-muted">
-            Every component, working. The phone screens are real pages at iPhone size; the desktop examples open full screen.
+            Every component, working, and whole screens built from them: each one page that works on a phone and on desktop.
           </p>
-          <div className="flex flex-col items-start gap-2 pt-2">
-            <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop">
-              Desktop: directory
-            </a>
-            <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop/hubs">
-              Desktop: hubs table and dialogs
-            </a>
-            <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop/developers">
-              Desktop: section with sub-pages
-            </a>
-          </div>
         </div>
         <SegmentedControl
           label="Theme"
@@ -107,18 +104,27 @@ export default function Preview() {
         />
       </header>
 
-      <Block id="phone" title="On a phone, installed" note="Each frame is a full page at iPhone 15 size, safe areas and all. The welcome, install and offline screens are what makes the app work as an installed app.">
-        <div className="-mx-6 flex snap-x gap-6 overflow-x-auto px-6 pb-4">
-          {PHONES.map((p) => (
-            <figure key={p.label} className="flex shrink-0 snap-start flex-col gap-2">
-              <figcaption className="text-sm font-medium text-ink-muted">{p.label}</figcaption>
-              <div className="overflow-hidden rounded-[44px] border-[10px] border-[#1b1b22] bg-paper shadow-[0_12px_40px_rgb(10_10_20/0.18)]">
-                <iframe
-                  title={p.label}
-                  src={`/phone/${p.screen}${p.platform ? "?platform=android" : ""}`}
-                  className="block h-[852px] w-[393px] origin-top-left"
-                  style={{ zoom: 0.62 }}
-                />
+      <Block id="screens" title="Screens" note="Each screen at the sizes it's used: on a phone, on desktop, or both from the same address, styled for each. Open one to use it full size.">
+        <div className="flex flex-col gap-10">
+          {SCREENS.map((sc) => (
+            <figure key={sc.path} className="flex flex-col gap-3">
+              <figcaption className="flex items-baseline gap-3 text-sm font-medium text-ink">
+                {sc.label}
+                <a href={sc.path} className="font-normal text-brand-ink underline underline-offset-4">
+                  Open
+                </a>
+              </figcaption>
+              <div className="flex items-start gap-6 overflow-x-auto pb-2">
+                {sc.sizes.includes("phone") && (
+                  <div className="shrink-0 overflow-hidden rounded-[36px] border-[8px] border-[#1b1b22] bg-paper shadow-[0_12px_40px_rgb(10_10_20/0.18)]">
+                    <iframe title={`${sc.label}, phone`} src={sc.path} loading="lazy" className="block h-[852px] w-[393px]" style={{ zoom: 0.5 }} />
+                  </div>
+                )}
+                {sc.sizes.includes("desktop") && (
+                  <div className="shrink-0 overflow-hidden rounded-card border border-line bg-paper shadow-card">
+                    <iframe title={`${sc.label}, desktop`} src={sc.path} loading="lazy" className="block h-[900px] w-[1440px]" style={{ zoom: 0.4 }} />
+                  </div>
+                )}
               </div>
             </figure>
           ))}

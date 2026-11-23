@@ -215,12 +215,13 @@ export function Row({
 }
 
 // A row with a Switch at the end: a setting that's on or off. The whole row
-// toggles it. Pass the Switch as `control`.
+// toggles it. Pass the Switch as `control`. Phone-sized on a phone, desktop-
+// sized on desktop, so the same settings list serves both.
 export function SwitchRow({ label, description, control }: { label: ReactNode; description?: ReactNode; control: ReactNode }) {
   return (
-    <label className="flex min-h-14 cursor-pointer items-center gap-4 py-3">
+    <label className="flex min-h-14 cursor-pointer items-center gap-4 py-3 md:min-h-12 md:py-2.5">
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-        <span className="text-[17px] text-ink">{label}</span>
+        <span className="text-[17px] text-ink md:text-[15px]">{label}</span>
         {description && <span className="text-sm text-ink-muted">{description}</span>}
       </span>
       {control}
