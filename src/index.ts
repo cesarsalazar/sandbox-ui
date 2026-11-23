@@ -13,6 +13,7 @@ export { Field, Input, Textarea, Select, Checkbox, ChoiceCards, ChoiceList, Swit
 export { Card, Section, Divider } from "./components/card";
 export { Badge, type Tone } from "./components/badge";
 export { Avatar, initialsOf, type AvatarSize } from "./components/avatar";
+export { ProfileMenu, MenuItem, MenuDivider } from "./components/profile-menu";
 export { PageHeader } from "./components/page-header";
 export { EmptyState } from "./components/empty-state";
 export { Notice } from "./components/notice";

@@ -9,10 +9,11 @@ export function Container({ size = "default", className, children }: { size?: "n
 }
 
 // The bar across the top of every Sandbox app: the logo and the app's name,
-// then navigation, then whatever goes on the right (usually the person).
+// then navigation, then whatever goes on the right (usually the person). It
+// sits above the page so a menu opening from it covers what scrolls beneath.
 export function TopBar({ appName, home = "/", nav, end, className }: { appName?: ReactNode; home?: string; nav?: ReactNode; end?: ReactNode; className?: string }) {
   return (
-    <header className={cx("border-b border-line bg-paper/90 backdrop-blur", className)}>
+    <header className={cx("relative z-30 border-b border-line bg-paper/90 backdrop-blur", className)}>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
         <a href={home} className="flex shrink-0 items-center gap-3 text-brand-ink">
           <Logo className="h-[18px] w-auto" />

@@ -17,8 +17,11 @@ import {
   Input,
   MemberCard,
   MemberGrid,
+  MenuDivider,
+  MenuItem,
   Pagination,
   PencilIcon,
+  ProfileMenu,
   RowActions,
   SearchInput,
   SegmentedControl,
@@ -291,6 +294,17 @@ export default function Preview() {
               { label: "Email", value: <span className="text-brand-ink">ana@example.com</span> },
             ]}
           />
+        </div>
+      </Block>
+
+      <Block id="profile-menu" title="Profile menu" note="The photo at the end of the top bar. Your name and email, app choices with a check on the current one, then sign out.">
+        <div className="flex justify-end pb-56">
+          <ProfileMenu name="Ana López" detail="ana@example.com">
+            <MenuItem selected>View as admin</MenuItem>
+            <MenuItem selected={false}>View as voter</MenuItem>
+            <MenuDivider />
+            <MenuItem>Sign out</MenuItem>
+          </ProfileMenu>
         </div>
       </Block>
 
