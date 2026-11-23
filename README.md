@@ -49,6 +49,9 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 
 ## Rules
 
+- **One fact per line.** Never join facts with middle dots ("Board member ·
+  Mexico City", "Winter 2026 · finish by…"). Give each its own line, put
+  them in a `DetailList`, or write a plain sentence.
 - **Colours only through the tokens** (`bg-paper`, `text-ink`, `text-ink-muted`,
   `border-line`, `bg-brand`, `bg-success-soft`…), never a hex value in an app.
   That's what makes dark mode work with no extra classes.

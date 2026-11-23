@@ -79,20 +79,18 @@ export default function Preview() {
     <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-14">
       <header className="flex flex-wrap items-end justify-between gap-6">
         <div className="flex flex-col gap-2">
-          <p className="text-sm font-medium text-brand-ink">sandbox-ui · preview</p>
+          <p className="text-sm font-medium text-brand-ink">sandbox-ui preview</p>
           <h1 className="text-[34px] font-semibold tracking-tight text-ink">Components for Sandbox apps</h1>
           <p className="max-w-2xl text-[17px] leading-relaxed text-ink-muted">
             Every component, working. The phone screens are real pages at iPhone size; the desktop examples open full screen.
           </p>
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-col items-start gap-2 pt-2">
             <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop">
               Desktop: directory
             </a>
-            <span className="text-ink-faint">·</span>
             <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop/hubs">
               Desktop: hubs table and dialogs
             </a>
-            <span className="text-ink-faint">·</span>
             <a className="text-[15px] font-medium text-brand-ink underline underline-offset-4" href="/desktop/developers">
               Desktop: section with sub-pages
             </a>
