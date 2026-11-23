@@ -98,7 +98,7 @@ import { Button, Card, PageHeader } from "sandbox-ui";
 | | |
 |---|---|
 | `Button`, `ButtonLink`, `buttonClass()` | primary, secondary, ghost, danger; three sizes |
-| `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards`, `Switch` | form controls with label, hint and error |
+| `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `ChoiceCards`, `ChoiceList`, `Switch` | form controls with label, hint and error; `ChoiceList` is one box with a row per option, for a short list of answers like Approve / Reject / Abstain, and `ChoiceCards` a card per option, for choices that each need a sentence |
 | `fieldClasses` | the same look for a control an app draws itself: `input`, `select`, `textarea`, `label`, `hint`, `error` |
 | `InputGroup`, `GroupInput`, `GroupSelect` | one control in parts, such as country code and phone number |
 | `Card`, `Section`, `Divider` | grouping |

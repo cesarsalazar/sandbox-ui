@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import {
   Avatar,
   Button,
+  ChoiceList,
   ConfirmDialog,
   CopyButton,
   CopyIconButton,
@@ -200,6 +201,18 @@ export default function Preview() {
               options={[
                 { value: "active", label: "Active" },
                 { value: "archived", label: "Archived" },
+              ]}
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-medium text-ink-muted">One answer from a short list</p>
+            <ChoiceList
+              name="approve"
+              legend="Do you approve this change?"
+              options={[
+                { value: "approve", label: "Approve" },
+                { value: "reject", label: "Reject" },
+                { value: "abstain", label: "Abstain", description: "Counts towards turnout, not the result." },
               ]}
             />
           </div>

@@ -120,8 +120,7 @@ export function ChoiceCards({
             type="radio"
             name={name}
             value={o.value}
-            checked={value === undefined ? undefined : value === o.value}
-            defaultChecked={defaultValue === o.value}
+            {...checkedProps(value, defaultValue, o.value)}
             onChange={onChange ? () => onChange(o.value) : undefined}
             className="mt-1 size-4 shrink-0 cursor-pointer accent-brand"
           />
@@ -131,6 +130,62 @@ export function ChoiceCards({
           </span>
         </label>
       ))}
+    </fieldset>
+  );
+}
+
+// A radio is either controlled (checked) or not (defaultChecked), never both:
+// React warns when it gets the two together.
+function checkedProps(value: string | undefined, defaultValue: string | undefined, option: string) {
+  return value === undefined ? { defaultChecked: defaultValue === option } : { checked: value === option };
+}
+
+// One answer from a short list, in a single box with a row per option: a
+// ballot's Approve / Reject / Abstain, a yes or no. Lighter than ChoiceCards,
+// which gives each option a card of its own for when every option needs a
+// sentence of explanation. The chosen row takes the brand tint.
+export function ChoiceList({
+  name,
+  options,
+  value,
+  defaultValue,
+  onChange,
+  legend,
+  required,
+}: {
+  name: string;
+  legend?: ReactNode;
+  options: { value: string; label: ReactNode; description?: ReactNode }[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  required?: boolean;
+}) {
+  return (
+    <fieldset className="flex min-w-0 flex-col">
+      {legend && <legend className="mb-2 text-sm font-medium text-ink">{legend}</legend>}
+      <div className="divide-y divide-line overflow-hidden rounded-field border border-line-strong bg-surface">
+        {options.map((o) => (
+          <label
+            key={o.value}
+            className="flex cursor-pointer items-center gap-3 px-4 py-3.5 transition-colors hover:bg-sunken has-checked:bg-brand-soft has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus"
+          >
+            <input
+              type="radio"
+              name={name}
+              value={o.value}
+              required={required}
+              {...checkedProps(value, defaultValue, o.value)}
+              onChange={onChange ? () => onChange(o.value) : undefined}
+              className="size-4 shrink-0 cursor-pointer accent-brand focus-visible:outline-none"
+            />
+            <span className="flex min-w-0 flex-col gap-0.5">
+              <span className="text-[15px] font-medium text-ink">{o.label}</span>
+              {o.description && <span className="text-sm text-ink-muted">{o.description}</span>}
+            </span>
+          </label>
+        ))}
+      </div>
     </fieldset>
   );
 }
